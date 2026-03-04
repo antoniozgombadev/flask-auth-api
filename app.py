@@ -1,3 +1,4 @@
+import os 
 from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import (
@@ -8,10 +9,12 @@ from flask_jwt_extended import (
 )
 from config import Config
 from models import db, User
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
+print("DATABASE_URL FROM ENV:", os.environ.get("DATABASE_URL"))
 db.init_app(app)
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)

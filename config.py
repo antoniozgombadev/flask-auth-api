@@ -1,6 +1,15 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:FirstDevWork@localhost:5432/flask_auth_db"
+    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
+    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "dev-jwt-secret")
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JWT_SECRET_KEY = "super-secret-key-change-this"
+
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "connect_args": {
+            "sslmode": "require"
+        }
+    }
