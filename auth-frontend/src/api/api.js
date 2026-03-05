@@ -1,9 +1,9 @@
-const API_URL = "https://flask-auth-api-cnjc.onrender.com";
+const API_URL = "https://flask-auth-api.onrender.com";
 
 export const apiFetch = async (url, options = {}) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(url, {
+  const res = await fetch(`${API_URL}${url}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",

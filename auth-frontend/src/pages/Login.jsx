@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { apiFetch } from "../api/api";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,22 +27,18 @@ function Login() {
     setResponse("");
 
     try {
-      const res = await fetch("/api/login", {
+      const data = await apiFetch("/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
-
-      if (res.ok && data.access_token) {
+      if (data.access_token) {
         login(data.access_token);
         navigate("/dashboard");
       } else {
-        setResponse(data.detail || "Login failed");
+        setResponse("Login failed");
       }
+
     } catch (error) {
       setResponse("Server error");
     }
