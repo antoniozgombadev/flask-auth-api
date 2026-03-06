@@ -14,3 +14,12 @@ export const apiFetch = async (url, options = {}) => {
 
   return res.json();
 };
+const res = await fetch(`${API_URL}${url}`, {
+  method: options.method || "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: token ? `Bearer ${token}` : "",
+    ...(options.headers || {})
+  },
+  ...options
+});
