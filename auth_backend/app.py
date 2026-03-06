@@ -20,7 +20,7 @@ app.config.from_object(Config)
 # --------------------------------
 # CORS (MORA biti poslije app)
 # --------------------------------
-CORS(app, origins=["https://auth-frontend-mauve.vercel.app/"])
+CORS(app, origins=["https://auth-frontend-mauve.vercel.app"])
 
 print("DATABASE_URL FROM ENV:", os.environ.get("DATABASE_URL"))
 
