@@ -1,4 +1,4 @@
-const API_URL = "https://flask-auth-api-cnjc.onrender.com";
+const API_URL = "https://auth-backend-uxw6.onrender.com/";
 
 export const apiFetch = async (url, options = {}) => {
   const token = localStorage.getItem("token");
