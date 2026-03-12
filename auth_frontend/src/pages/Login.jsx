@@ -27,9 +27,14 @@ function Login() {
     setResponse("");
 
     try {
-      const data = await apiFetch("/login", {
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      await fetch(`${API_URL}/login`, {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
       });
 
       if (data.access_token) {
